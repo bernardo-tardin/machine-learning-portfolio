@@ -14,7 +14,6 @@ Welcome to my Machine Learning portfolio. This repository serves as a comprehens
 | **📧 Multi-Arch Spam** | Benchmarking 3 architectures for email filtering. | `Dense`, `LSTM`, `USE` | **F1-Score Optimized** |
 | **📩 Basic Spam** | Initial NLP pipeline and LSTM baseline. | `LSTM`, `NLTK`, `Keras` | **98% Accuracy** |
 
-Exportar para Sheets---
 
 ## 📂 Project Highlights
 

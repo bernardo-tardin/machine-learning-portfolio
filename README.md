@@ -11,13 +11,13 @@ Welcome to my Machine Learning portfolio. This repository serves as a comprehens
 | Project | Brief Description | Tech Stack | Key Result |
 | --- | --- | --- | --- |
 | **🛡️ TruthGuard** | Fake News classification comparing Headlines vs. Full-Text. | `Bi-LSTM`, `TF-Hub (USE)` | **99.8% Accuracy** |
-| **🤖 SupportBot** | Multiclass ticket routing & Data Quality (GIGO) audit. | `Bi-LSTM`, `Naive Bayes`, `Softmax` | **Case Study on Noise** |
+| **🔢 Digit Recognition** | Handwritten digit classification (0-9) using Deep Learning. | `TensorFlow`, `NumPy` | **\~98% Accuracy** |
+| **🤖 SupportBot** | Multiclass ticket routing & Data Quality (GIGO) audit. | `Bi-LSTM`, `Naive Bayes` | **Case Study on Noise** |
 | **📧 Multi-Arch Spam** | Benchmarking 3 architectures for email filtering. | `Dense`, `LSTM`, `USE` | **F1-Score Optimized** |
 | **📈 Classic Categorization** | High-speed baseline using statistical ML. | `Naive Bayes`, `Sklearn` | **98% Accuracy** |
 | **📩 Basic Spam** | Initial NLP pipeline and LSTM baseline. | `LSTM`, `NLTK`, `Keras` | **98% Accuracy** |
 
-
-## 📂 Project Highlights
+Exportar para Sheets## 📂 Project Highlights
 
 ### 1. 🛡️ TruthGuard: Fake News Detection
 
@@ -27,15 +27,23 @@ A sensitivity analysis project that identifies misinformation by comparing the p
 * **Winning Model:** A **Bidirectional LSTM** reached 99.8% accuracy on full-text data, proving that stylistic patterns in disinformation are most evident in narrative structure.
 * [🔗 View Project Folder](./truthguard)
 
-### 2. 🤖 SupportBot: Multiclass Ticket Routing
+### 2. 🔢 Digit Recognition (MNIST)
+
+A computer vision project focused on recognizing handwritten digits through an evolving architectural approach.
+
+* **Technical Highlight:** Benchmarked a linear baseline against a **Deep Neural Network (DNN)** to demonstrate the power of non-linear activations and hidden layers in image processing.
+* **Architecture:** Implemented a multi-layer stack featuring **ReLU** activation and **128-neuron** hidden layers, utilizing **pixel normalization** to ensure gradient stability and high convergence speed.
+* [🔗 View Project Folder](./classify_handwritten_digits)
+
+### 3. 🤖 SupportBot: Multiclass Ticket Routing
 
 A multiclass classification project designed to route customer tickets to departments, focusing on architectural trade-offs and **Data Quality Audit**.
 
-* **Technical Highlight:** Implemented a **GIGO (Garbage In, Garbage Out)** diagnostic. Identified that model convergence was limited by the semantic vacuum of synthetic templates rather than architectural flaws.
+* **Technical Highlight:** Implemented a **GIGO (Garbage In, Garbage Out)** diagnostic. Identified that model convergence was limited by the "semantic vacuum" of synthetic templates rather than architectural flaws.
 * **Architecture:** Utilized **Stacked Bi-LSTMs** with **GlobalAveragePooling1D** to reduce parameters and combat overfitting in high-noise environments.
 * [🔗 View Project Folder](./supportbot)
 
-### 3. 📧 Multi-Architecture Spam Classification
+### 4. 📧 Multi-Architecture Spam Classification
 
 A deep dive into architectural trade-offs, comparing traditional Dense networks, Recurrent Neural Networks (LSTM), and Transfer Learning.
 
@@ -43,7 +51,7 @@ A deep dive into architectural trade-offs, comparing traditional Dense networks,
 * **Key Insight:** Google’s **Universal Sentence Encoder (USE)** provided the most robust semantic understanding for complex, unstructured messages.
 * [🔗 View Project Folder](./sms_detection)
 
-### 4. 📈 Classic Text Categorization (Naive Bayes)
+### 5. 📈 Classic Text Categorization (Naive Bayes)
 
 A project focused on computational efficiency and establishing a statistical baseline for NLP tasks.
 
@@ -51,22 +59,18 @@ A project focused on computational efficiency and establishing a statistical bas
 * **Algorithm:** Leveraged **Multinomial Naive Bayes** to create a lightweight, high-speed classifier that rivals deep learning models on structured datasets.
 * [🔗 View Project Folder](./classify_files)
 
-### 5. 📩 Spam Email Classifier (NLP/LSTM)
-
-The foundational project used to master the machine learning life-cycle for text data.
-
-* **Technical Highlight:** Implemented **Undersampling** techniques to resolve class imbalance, ensuring the model remained unbiased toward legitimate emails.
-* **Core Concepts:** Tokenization, Padding, and the use of Dropout layers to prevent overfitting.
-* [🔗 View Project Folder](./spam_detection)
-
 ---
 
 ## 🛠️ Tech Stack & Skills
 
-* **Languages:** Python 3.10+
+* **Languages:** Python 3.12+
 * **Deep Learning:** TensorFlow 2.x, Keras, TensorFlow Hub.
 * **NLP Tools:** NLTK, WordCloud, TextVectorization, CountVectorizer, Word Embeddings, LabelEncoding.
 * **Data Science:** Pandas, NumPy, Scikit-Learn.
+* **Computer Vision Basics:** Image Normalization, Pixel Flattening, MNIST Benchmarking.
 * **Visualization:** Matplotlib, Seaborn (Confusion Matrix Heatmaps).
-* **Architectures:** Dense Networks, LSTMs, Bidirectional LSTMs, Transfer Learning, Naive Bayes, GlobalAveragePooling1D.
-* **Problem Domains:** Binary Classification, Multiclass Classification, Data Quality Auditing.
+* **Architectures:** Dense Networks (DNN), LSTMs, Bidirectional LSTMs, Transfer Learning, Naive Bayes, GlobalAveragePooling1D.
+* **Problem Domains:** Binary Classification, Multiclass Classification, Data Quality Auditing, Handwritten Digit Recognition.
+
+---
+

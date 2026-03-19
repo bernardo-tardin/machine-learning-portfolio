@@ -14,10 +14,11 @@ Welcome to my Machine Learning portfolio. This repository serves as a comprehens
 | **🔢 Digit Recognition** | Handwritten digit classification (0-9) using Deep Learning. | `TensorFlow`, `NumPy` | **\~98% Accuracy** |
 | **🤖 SupportBot** | Multiclass ticket routing & Data Quality (GIGO) audit. | `Bi-LSTM`, `Naive Bayes` | **Case Study on Noise** |
 | **📧 Multi-Arch Spam** | Benchmarking 3 architectures for email filtering. | `Dense`, `LSTM`, `USE` | **F1-Score Optimized** |
+| **🔢 OCR Recognition** | Classical vision approach for digit recognition from a grid. | `OpenCV`, `NumPy` | **High-speed inference** |
 | **📈 Classic Categorization** | High-speed baseline using statistical ML. | `Naive Bayes`, `Sklearn` | **98% Accuracy** |
 | **📩 Basic Spam** | Initial NLP pipeline and LSTM baseline. | `LSTM`, `NLTK`, `Keras` | **98% Accuracy** |
 
-Exportar para Sheets## 📂 Project Highlights
+## 📂 Project Highlights
 
 ### 1. 🛡️ TruthGuard: Fake News Detection
 
@@ -51,7 +52,15 @@ A deep dive into architectural trade-offs, comparing traditional Dense networks,
 * **Key Insight:** Google’s **Universal Sentence Encoder (USE)** provided the most robust semantic understanding for complex, unstructured messages.
 * [🔗 View Project Folder](./sms_detection)
 
-### 5. 📈 Classic Text Categorization (Naive Bayes)
+### 5. 🔢 OCR: Handwritten Digit Recognition (kNN)
+
+A computer vision project focused on classical pattern recognition through image decomposition and proximity algorithms.
+
+* **Technical Highlight:** Leveraged **OpenCV's Machine Learning module** to perform character recognition without neural networks, focusing on Euclidean distance calculations.
+* **Architecture:** Mastered **NumPy's slicing and reshaping** (vectorization) to slice a large image into 5,000 distinct samples (using `vsplit` and `hsplit`), processing batch inference in milliseconds.
+* [🔗 View Project Folder](./ocr_handwritten_digits)
+
+### 6. 📈 Classic Text Categorization (Naive Bayes)
 
 A project focused on computational efficiency and establishing a statistical baseline for NLP tasks.
 
@@ -67,10 +76,9 @@ A project focused on computational efficiency and establishing a statistical bas
 * **Deep Learning:** TensorFlow 2.x, Keras, TensorFlow Hub.
 * **NLP Tools:** NLTK, WordCloud, TextVectorization, CountVectorizer, Word Embeddings, LabelEncoding.
 * **Data Science:** Pandas, NumPy, Scikit-Learn.
-* **Computer Vision Basics:** Image Normalization, Pixel Flattening, MNIST Benchmarking.
+* **Computer Vision:** OpenCV (cv2), Image Normalization, Pixel Flattening, Image Decomposition (vsplit/hsplit), MNIST Benchmarking.
 * **Visualization:** Matplotlib, Seaborn (Confusion Matrix Heatmaps).
-* **Architectures:** Dense Networks (DNN), LSTMs, Bidirectional LSTMs, Transfer Learning, Naive Bayes, GlobalAveragePooling1D.
-* **Problem Domains:** Binary Classification, Multiclass Classification, Data Quality Auditing, Handwritten Digit Recognition.
+* **Architectures:** Dense Networks (DNN), LSTMs, Bidirectional LSTMs, Transfer Learning, Naive Bayes, k-Nearest Neighbors (kNN), GlobalAveragePooling1D.
+* **Problem Domains:** Binary Classification, Multiclass Classification, Data Quality Auditing, Handwritten Digit Recognition (OCR).
 
 ---
-

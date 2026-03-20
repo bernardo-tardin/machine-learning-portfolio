@@ -1,66 +1,103 @@
-# 🔢 MNIST Handwritten Digit Classification
+# ✍️ Handwritten Digit Classifier (MNIST)
 
-This project explores the application of Machine Learning and Deep Learning to recognize handwritten digits using the **MNIST** dataset. It demonstrates the evolution from a simple linear classifier to a Deep Neural Network (DNN), highlighting fundamental concepts of computer vision and tensor processing.
+Classifies handwritten digits (0–9) from the MNIST dataset using TensorFlow/Keras. Compares two architectures — a minimal baseline and a deeper normalized network — to illustrate the impact of depth and data normalization.
 
-## 📌 Project Overview
+---
 
-The MNIST dataset consists of 70,000 grayscale images of digits from 0 to 9, each with a resolution of 28x28 pixels. This project implements a complete model development lifecycle:
+## 🎯 Objective
 
-1. **Data Loading and Exploration**: Using NumPy to manage raw image arrays.
-2. **Preprocessing**: Pixel normalization to optimize gradient descent.
-3. **Architectural Benchmarking**: Comparing linear baseline models against multi-layer neural networks.
-4. **Inference and Visualization**: Testing predictions on individual samples with visual feedback.
+Build and compare two neural network models on MNIST to understand the effect of:
+- Network depth (1 layer vs 3 layers)
+- Data normalization (raw pixels vs normalized 0–1)
+- Optimizer choice (SGD vs Adam)
 
-## 🛠️ Tech Stack
+---
 
-* **Language**: Python 3.12
-* **Deep Learning**: TensorFlow and Keras
-* **Data Manipulation**: NumPy (array slicing and `np.argmax` logic)
-* **Visualization**: Matplotlib (image rendering and prediction labeling)
-
-## 🏗️ Model Architectures
-
-### 1. Linear Baseline
-
-A direct approach using a **Flatten** layer followed by a single **Dense** layer with **Softmax** activation.
-
-* **Input**: 28x28 pixels (flattened to 784 neurons).
-* **Output**: 10 neurons representing multiclass probability distribution.
-
-### 2. Deep Learning Model (DNN)
-
-To capture complex patterns like curves and intersections, a deep architecture was implemented:
-
-* **Hidden Layers**: Two Dense layers with **128 neurons** each.
-* **ReLU Activation**: Introduced to handle non-linearity and allow the network to learn abstract shapes.
-* **Optimizer**: Adam.
-* **Loss Function**: Sparse Categorical Crossentropy.
-
-## 🧠 Key Technical Insights
-
-* **Normalization**: Pixel values (0-255) were scaled to a **0-1 range** using `tf.keras.utils.normalize`, which significantly accelerates model convergence.
-* **Flattening**: Converting the 2D image matrix into a 1D vector is required for processing by fully connected (Dense) layers.
-* **Softmax vs. Argmax**: While the model outputs 10 probabilities via Softmax, `np.argmax` is used during inference to select the digit with the highest confidence.
-* **Model Portability**: The trained deep learning model is exported in `.h5` format for production readiness.
-
-## 📂 How to Run
-
-1. Clone this repository.
-2. Install the required dependencies:
+## 📁 Project Structure
 
 ```
-pip install numpy matplotlib tensorflow
-
-```
-3. Launch the Jupyter Notebook `classify_handwritten_digits.ipynb` and execute the cells in sequence.
-
-## 💾 Model Export
-
-The final model is saved as follows:
-
-```
-model_dl.save('epic_num_reader.h5')
-
+classify_handwritten_digits/
+├── classify_handwritten_digits.ipynb   # Main notebook
+└── epic_num_reader.h5                  # Saved deep model
 ```
 
 ---
+
+## 🔬 Approach
+
+### Model 1 — Baseline (SGD, no normalization)
+
+```python
+model = tf.keras.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28, 28)),
+    tf.keras.layers.Dense(10, activation='softmax')
+])
+model.compile(optimizer='sgd', loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+model.fit(data, labels, batch_size=10, epochs=10)
+```
+
+### Model 2 — Deep Network (Adam + normalization)
+
+```python
+# Normalize pixels from [0, 255] → [0, 1]
+x_train_dl = tf.keras.utils.normalize(x_train, axis=1)
+
+model_dl = tf.keras.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28, 28)),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dense(10, activation='softmax')
+])
+model_dl.compile(optimizer='adam', loss='sparse_categorical_crossentropy',
+                 metrics=['accuracy'])
+model_dl.fit(x_train_dl, y_train, epochs=3)
+```
+
+---
+
+## 💡 Key Concepts
+
+### Why Normalize?
+Neural networks train via gradient descent. Pixel values between 0–255 produce large gradients, causing unstable or slow convergence. Normalizing to 0–1 ensures gradients flow evenly across all layers.
+
+### Softmax Output
+The final layer uses `softmax`, which distributes output as probabilities summing to 1.0 across all 10 digit classes. `np.argmax(prediction)` extracts the predicted digit.
+
+### Sparse Categorical Crossentropy
+Used when class labels are integers (0, 1, 2... 9) rather than one-hot encoded vectors.
+
+---
+
+## 📊 Comparison
+
+| Feature | Model 1 (Baseline) | Model 2 (Deep) |
+|---------|-------------------|----------------|
+| Layers | Flatten → Dense(10) | Flatten → Dense(128)×2 → Dense(10) |
+| Optimizer | SGD | Adam |
+| Normalization | None | `tf.keras.utils.normalize` |
+| Epochs | 10 | 3 |
+
+---
+
+## 💾 Model Persistence
+
+```python
+# Save
+model_dl.save('epic_num_reader.h5')
+
+# Load and predict
+new_model = tf.keras.models.load_model('epic_num_reader.h5')
+predictions = new_model.predict([x_test_dl])
+print(np.argmax(predictions[3]))  # Predicted digit
+```
+
+---
+
+## 🛠️ Requirements
+
+```
+tensorflow>=2.15.0
+numpy
+matplotlib
+```

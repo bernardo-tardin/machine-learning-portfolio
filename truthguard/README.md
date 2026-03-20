@@ -1,83 +1,130 @@
-# 🛡️ TruthGuard: Fake News Detection with NLP & Deep Learning
+# 🛡️ TruthGuard — Fake News Detector
 
-This repository contains **TruthGuard**, a Deep Learning project designed to classify news articles as **Real** or **Fake**. The project explores the predictive power of different news components by benchmarking models trained on **Full Article Text** versus **Article Titles**.
-
-## 📌 Project Overview
-
-The objective is to build a robust classifier to combat disinformation. The project implements a complete machine learning pipeline, including data engineering, text preprocessing (NLP), and a comparative analysis of three distinct neural network architectures.
-
-## 🛠️ Tech Stack
-
-* **Language:** Python 3.x
-* **Data Manipulation:** `Pandas`, `Numpy`
-* **Visualization:** `Matplotlib`, `Seaborn`
-* **NLP:** `NLTK` (Stopwords), `Keras TextVectorization`
-* **Deep Learning:** `TensorFlow 2.x`, `Keras`, `TensorFlow Hub` (Universal Sentence Encoder)
-* **Metrics:** `Scikit-Learn` (Accuracy, Precision, Recall, F1-Score)
-
-## 📉 Methodology & Pipeline
-
-### 1. Data Engineering & Balancing
-
-* **Cleaning:** Dropped metadata (`subject`, `date`) to focus strictly on textual content.
-* **Balancing:** Performed **Undersampling** on the majority class to achieve a perfect 50/50 distribution between "Real" and "Fake" news, preventing model bias.
-* **Labeling:** Encoded Real news as `1` and Fake news as `0`.
-
-### 2. Text Preprocessing (NLP)
-
-* **Stopwords Removal:** Leveraged `NLTK` to filter out common words that lack semantic importance.
-* **Vectorization:** Implemented a `TextVectorization` layer to tokenize text into integer indices, using the average length of the input for padding.
-* **Padding:** Standardized all input sequences to ensure uniform matrix dimensions for the neural network.
-
-### 3. Model Architectures
-
-I benchmarked three different approaches to find the optimal balance between speed and performance:
-
-* **Dense Model:** A baseline model using Embeddings and `GlobalAveragePooling1D`.
-* **Bi-LSTM Model:** A complex architecture using **Bidirectional LSTMs** to capture long-range dependencies and context from both directions.
-* **Transfer Learning (USE):** Utilizing Google's **Universal Sentence Encoder** to extract high-level semantic embeddings.
+Detects fake news articles by benchmarking three NLP architectures: a **Dense embedding model**, a **Bidirectional LSTM**, and Google's **Universal Sentence Encoder**. Evaluates each model on Accuracy, Precision, Recall, and F1-Score.
 
 ---
 
-## 📊 Performance Results
+## 🎯 Objective
 
-The project compared performance based on two different inputs. Interestingly, the models performed exceptionally well on full text body, suggesting that stylistic patterns in disinformation are more evident in longer sequences.
+Classify news articles as real or fake by comparing lightweight and powerful NLP architectures, providing a clear performance benchmark across four evaluation metrics.
 
-### **Analysis by Full Text (Body)**
+---
 
-| Model | Accuracy | Precision | Recall | F1-Score |
-| --- | --- | --- | --- | --- |
-| **Dense Embedding** | 99.46% | 99.32% | 99.60% | 99.46% |
-| **Bi-LSTM** | **99.80%** | **100.0%** | 99.60% | **99.80%** |
-| **Transfer Learning (USE)** | 91.47% | 91.08% | 91.97% | 91.52% |
-
-**Analysis by Title**
-
-| Model | Accuracy | Precision | Recall | F1-Score |
-| --- | --- | --- | --- | --- |
-| **Dense Embedding** | 94.81% | 94.69% | 94.96% | 94.83% |
-| **Bi-LSTM** | **95.45%** | **94.70%** | **96.31%** | **95.50%** |
-| **Transfer Learning (USE)** | 91.94% | 91.29% | 92.74% | 92.01% |
-
-
-## 📂 How to Run
-
-1. **Clone the repository:**
+## 📁 Project Structure
 
 ```
-git clone https://github.com/bernardo-tardin/truthguard-fake-news.git
+truthguard_by_text/
+├── truthguard_by_text.ipynb   # Main notebook
+├── True.csv                   # Real news articles
+└── Fake.csv                   # Fake news articles
+```
+
+---
+
+## 🔬 Approach
+
+### 1. Data Preparation
+
+Two separate CSV files are merged and labeled:
+
+```python
+df_true['label'] = 1   # Real news
+df_fake['label'] = 0   # Fake news
+df = pd.concat([df_true, df_fake], ignore_index=True)
+```
+
+**Class balancing:** The dataset is balanced by downsampling the majority class.
+
+```python
+fake_news_balanced = fake_news.sample(n=len(true_news), random_state=42)
+df = pd.concat([true_news, fake_news_balanced]).reset_index(drop=True)
+```
+
+**Stopword removal and vectorization:**
+```python
+text_vec = TextVectorization(
+    max_tokens=10000,
+    standardize='strip_punctuation',
+    output_mode='int',
+    output_sequence_length=average_text_len
+)
+text_vec.adapt(X_train_np)  # Vocabulary learned from training data only
+```
+
+### 2. Model 1 — Dense with Embeddings
 
 ```
-2. **Install dependencies:**
+Input → TextVectorization → Embedding(10000, 128) → GlobalAveragePooling1D
+      → Dense(32, relu) → Dense(1, sigmoid)
+```
+
+### 3. Model 2 — Bidirectional LSTM
 
 ```
-pip install -r requirements.txt
+Input → TextVectorization → Embedding(10000, 128)
+      → BiLSTM(64, return_sequences=True) → BiLSTM(64)
+      → Flatten → Dropout(0.1) → Dense(32, relu) → Dense(1, sigmoid)
+```
+
+### 4. Model 3 — Universal Sentence Encoder (Transfer Learning)
 
 ```
-3. **Run the analysis:**
-Execute the Jupyter Notebook to train and evaluate the models:
+Input (string) → USE (Google, frozen, 512-dim)
+              → Dense(64, relu) → Dropout(0.2) → Dense(1, sigmoid)
+```
+
+All three models share the same `compile_and_fit` helper and are evaluated with `get_metrics`.
+
+---
+
+## 💡 Key Concepts
+
+### Why `max_tokens=10000`?
+News articles have a large vocabulary. Capping at 10,000 tokens keeps the embedding matrix manageable while covering the most informative words. Rare words (typically noise) are discarded.
+
+### Flatten vs GlobalAveragePooling1D
+- **Model 2 uses `Flatten`** after BiLSTM: preserves positional detail, more parameters
+- **Model 1 uses `GAP`**: averages across all timesteps, more regularized
+
+Both approaches are compared to show their effect on final performance.
+
+### USE Architecture Difference
+Models 1 and 2 require a `TextVectorization` + `Embedding` pipeline. Model 3 skips both — the USE directly encodes raw strings into 512-dimensional vectors using a Transformer with Attention Mechanism internally.
+
+---
+
+## 📊 Evaluation
+
+```python
+results = {
+    'Dense Embedding'  : get_metrics(model1, X_test_np, y_test_np),
+    'Bi-LSTM'          : get_metrics(model2, X_test_np, y_test_np),
+    'Transfer Learning': get_metrics(model3, X_test_np, y_test_np),
+}
+results_df = pd.DataFrame(results).transpose()
+print(results_df)
+```
+
+| Metric | Dense | BiLSTM | USE |
+|--------|-------|--------|-----|
+| Accuracy | — | — | — |
+| Precision | — | — | — |
+| Recall | — | — | — |
+| F1-Score | — | — | — |
+
+*Run the notebook to populate results.*
+
+---
+
+## 🛠️ Requirements
 
 ```
-jupyter notebook truthguard_analysis.ipynb
-
+tensorflow>=2.15.0
+tensorflow-hub
+pandas
+numpy
+scikit-learn
+nltk
+matplotlib
+seaborn
 ```

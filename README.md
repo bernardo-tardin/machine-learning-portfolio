@@ -1,84 +1,101 @@
-# 🤖 Machine Learning & NLP Portfolio
+# 🤖 Machine Learning Portfolio
 
-### Developed by Bernardo Moraes
-
-Welcome to my Machine Learning portfolio. This repository serves as a comprehensive collection of my work in **Deep Learning**, **Natural Language Processing (NLP)**, and **Data Engineering**. Each project is focused on solving real-world classification problems using state-of-the-art architectures and rigorous evaluation metrics.
+A collection of hands-on Machine Learning projects built to develop practical skills across Computer Vision, Natural Language Processing, and Classical ML. Each project is self-contained and progressively explores more advanced techniques — spanning two frameworks (TensorFlow and PyTorch).
 
 ---
 
-## 🚀 Projects Overview
+## 📂 Projects
 
-| Project | Brief Description | Tech Stack | Key Result |
-| --- | --- | --- | --- |
-| **🛡️ TruthGuard** | Fake News classification comparing Headlines vs. Full-Text. | `Bi-LSTM`, `TF-Hub (USE)` | **99.8% Accuracy** |
-| **🔢 Digit Recognition** | Handwritten digit classification (0-9) using Deep Learning. | `TensorFlow`, `NumPy` | **\~98% Accuracy** |
-| **🤖 SupportBot** | Multiclass ticket routing & Data Quality (GIGO) audit. | `Bi-LSTM`, `Naive Bayes` | **Case Study on Noise** |
-| **📧 Multi-Arch Spam** | Benchmarking 3 architectures for email filtering. | `Dense`, `LSTM`, `USE` | **F1-Score Optimized** |
-| **🔢 OCR Recognition** | Classical vision approach for digit recognition from a grid. | `OpenCV`, `NumPy` | **High-speed inference** |
-| **📈 Classic Categorization** | High-speed baseline using statistical ML. | `Naive Bayes`, `Sklearn` | **98% Accuracy** |
-| **📩 Basic Spam** | Initial NLP pipeline and LSTM baseline. | `LSTM`, `NLTK`, `Keras` | **98% Accuracy** |
-
-## 📂 Project Highlights
-
-### 1. 🛡️ TruthGuard: Fake News Detection
-
-A sensitivity analysis project that identifies misinformation by comparing the predictive power of headlines against the full article body.
-
-* **Technical Highlight:** Conducted a comparative study between short-form input (Titles) and long-form sequences (Body).
-* **Winning Model:** A **Bidirectional LSTM** reached 99.8% accuracy on full-text data, proving that stylistic patterns in disinformation are most evident in narrative structure.
-* [🔗 View Project Folder](./truthguard)
-
-### 2. 🔢 Digit Recognition (MNIST)
-
-A computer vision project focused on recognizing handwritten digits through an evolving architectural approach.
-
-* **Technical Highlight:** Benchmarked a linear baseline against a **Deep Neural Network (DNN)** to demonstrate the power of non-linear activations and hidden layers in image processing.
-* **Architecture:** Implemented a multi-layer stack featuring **ReLU** activation and **128-neuron** hidden layers, utilizing **pixel normalization** to ensure gradient stability and high convergence speed.
-* [🔗 View Project Folder](./classify_handwritten_digits)
-
-### 3. 🤖 SupportBot: Multiclass Ticket Routing
-
-A multiclass classification project designed to route customer tickets to departments, focusing on architectural trade-offs and **Data Quality Audit**.
-
-* **Technical Highlight:** Implemented a **GIGO (Garbage In, Garbage Out)** diagnostic. Identified that model convergence was limited by the "semantic vacuum" of synthetic templates rather than architectural flaws.
-* **Architecture:** Utilized **Stacked Bi-LSTMs** with **GlobalAveragePooling1D** to reduce parameters and combat overfitting in high-noise environments.
-* [🔗 View Project Folder](./supportbot)
-
-### 4. 📧 Multi-Architecture Spam Classification
-
-A deep dive into architectural trade-offs, comparing traditional Dense networks, Recurrent Neural Networks (LSTM), and Transfer Learning.
-
-* **Technical Highlight:** Benchmarked model latency vs. classification precision to determine the most viable model for a production environment.
-* **Key Insight:** Google’s **Universal Sentence Encoder (USE)** provided the most robust semantic understanding for complex, unstructured messages.
-* [🔗 View Project Folder](./sms_detection)
-
-### 5. 🔢 OCR: Handwritten Digit Recognition (kNN)
-
-A computer vision project focused on classical pattern recognition through image decomposition and proximity algorithms.
-
-* **Technical Highlight:** Leveraged **OpenCV's Machine Learning module** to perform character recognition without neural networks, focusing on Euclidean distance calculations.
-* **Architecture:** Mastered **NumPy's slicing and reshaping** (vectorization) to slice a large image into 5,000 distinct samples (using `vsplit` and `hsplit`), processing batch inference in milliseconds.
-* [🔗 View Project Folder](./ocr_handwritten_digits)
-
-### 6. 📈 Classic Text Categorization (Naive Bayes)
-
-A project focused on computational efficiency and establishing a statistical baseline for NLP tasks.
-
-* **Technical Highlight:** Implemented a **Bag-of-Words (BoW)** model using `CountVectorizer` to transform text into sparse frequency matrices.
-* **Algorithm:** Leveraged **Multinomial Naive Bayes** to create a lightweight, high-speed classifier that rivals deep learning models on structured datasets.
-* [🔗 View Project Folder](./classify_files)
+| Folder | Title | Area | Techniques |
+|--------|-------|------|------------|
+| [`classify_files`](./classify_files) | Text Category Classifier | NLP | CountVectorizer, Multinomial Naive Bayes |
+| [`classify_handwritten_digits`](./classify_handwritten_digits) | Handwritten Digit Classifier | Computer Vision | TensorFlow/Keras, Dense Neural Networks, MNIST |
+| [`ocr_handwritten_digits`](./ocr_handwritten_digits) | OCR with kNN | Computer Vision | OpenCV, k-Nearest Neighbors, Image Slicing |
+| [`scikit_handwritten`](./scikit_handwritten) | Digit Recognition with MLP | Computer Vision | Scikit-learn, MLPClassifier, SGD |
+| [`sms_detection`](./sms_detection) | SMS Spam Detector | NLP | Embeddings, BiLSTM, Transfer Learning (USE) |
+| [`spam_detection`](./spam_detection) | Email Spam Detector | NLP | Tokenizer, LSTM, EarlyStopping, WordCloud |
+| [`supportbot`](./supportbot) | Support Ticket Classifier | NLP | Regex, Naive Bayes, Stacked BiLSTM, Multiclass |
+| [`truthguard_by_text`](./truthguard_by_text) | Fake News Detector | NLP | Embeddings, BiLSTM, Universal Sentence Encoder |
+| [`pytorch_handwritten_digits`](./pytorch_handwritten_digits) | Digit Classifier in PyTorch | Computer Vision | PyTorch, nn.Module, DataLoader, SGD |
+| [`neural_network_handwritten_digits`](./neural_network_handwritten_digits) | Digit Classifier from CSV | Computer Vision | TensorFlow/Keras, one-hot encoding, CSV pipeline |
+| [`sign_language`](./sign_language) | ASL Sign Language Classifier | Computer Vision | TensorFlow + PyTorch, image_dataset_from_directory, ImageFolder |
 
 ---
 
-## 🛠️ Tech Stack & Skills
+## 🗺️ Learning Path
 
-* **Languages:** Python 3.12+
-* **Deep Learning:** TensorFlow 2.x, Keras, TensorFlow Hub.
-* **NLP Tools:** NLTK, WordCloud, TextVectorization, CountVectorizer, Word Embeddings, LabelEncoding.
-* **Data Science:** Pandas, NumPy, Scikit-Learn.
-* **Computer Vision:** OpenCV (cv2), Image Normalization, Pixel Flattening, Image Decomposition (vsplit/hsplit), MNIST Benchmarking.
-* **Visualization:** Matplotlib, Seaborn (Confusion Matrix Heatmaps).
-* **Architectures:** Dense Networks (DNN), LSTMs, Bidirectional LSTMs, Transfer Learning, Naive Bayes, k-Nearest Neighbors (kNN), GlobalAveragePooling1D.
-* **Problem Domains:** Binary Classification, Multiclass Classification, Data Quality Auditing, Handwritten Digit Recognition (OCR).
+```
+Classical ML              Deep Learning (TF)            PyTorch              Cross-Framework
+────────────              ──────────────────            ───────              ──────────────
+CountVectorizer     →     Embeddings + Dense      →     nn.Module      →     Same task,
++ Naive Bayes             Embeddings + LSTM              DataLoader           two frameworks
+kNN (OpenCV)              Embeddings + BiLSTM            manual loop          (sign_language)
+MLPClassifier             Transfer Learning (USE)
+                          CSV → image pipeline
+```
 
 ---
+
+## 🛠️ Tech Stack
+
+- **Languages:** Python 3.12
+- **Deep Learning:** TensorFlow / Keras · PyTorch · TensorFlow Hub
+- **Classical ML:** Scikit-learn · OpenCV (`cv2`)
+- **Data:** Pandas · NumPy
+- **NLP:** NLTK · WordCloud
+- **Visualization:** Matplotlib · Seaborn
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/<your-username>/machine_learning_portfolio.git
+   cd machine_learning_portfolio
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Navigate to a project and open the notebook**
+   ```bash
+   cd sign_language
+   jupyter notebook
+   ```
+
+---
+
+## 📊 Results Overview
+
+| Project | Model | Framework | Accuracy |
+|---------|-------|-----------|----------|
+| `ocr_handwritten_digits` | kNN (k=3) | OpenCV | ~91.6% |
+| `pytorch_handwritten_digits` | Logistic Regression | PyTorch | ~84% |
+| `classify_handwritten_digits` | Dense NN (Adam) | TensorFlow | ~97%+ |
+| `neural_network_handwritten_digits` | Dense NN (Adam) | TensorFlow | ~97%+ |
+| `scikit_handwritten` | MLPClassifier (SGD) | Scikit-learn | ~95%+ |
+| `sign_language` | Dense NN | TF + PyTorch | — |
+| `sms_detection` | BiLSTM / USE | TensorFlow | ~98%+ |
+| `spam_detection` | LSTM + EarlyStopping | TensorFlow | ~97%+ |
+| `supportbot` | Stacked BiLSTM | TensorFlow | ~90%+ |
+| `truthguard_by_text` | BiLSTM / USE | TensorFlow | ~98%+ |
+| `classify_files` | Multinomial Naive Bayes | Scikit-learn | dataset-dependent |
+
+---
+
+## 📚 Key Concepts Covered
+
+- **Data Engineering:** Encoding, regex cleaning, class imbalance, feature selection, defensive CSV parsing
+- **Computer Vision:** Image slicing, grayscale conversion, kNN, DataLoader batching, `image_dataset_from_directory`
+- **NLP:** Stopword removal, CountVectorizer, TextVectorization, padding, word embeddings
+- **Architectures:** Dense, LSTM, BiLSTM, Stacked BiLSTM, Transfer Learning, PyTorch `nn.Module`
+- **Framework Comparison:** TensorFlow vs PyTorch on the same task (`sign_language`)
+- **Evaluation:** Accuracy, Precision, Recall, F1-Score, Confusion Matrix
+- **Best Practices:** `random_state`, `fit` vs `transform`, callbacks, `model.eval()` + `torch.no_grad()`
+
+---
+
+*This portfolio is actively updated as new projects are completed.*

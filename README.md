@@ -8,21 +8,21 @@ A collection of hands-on Machine Learning projects built to develop practical sk
 
 | Folder | Title | Area | Techniques |
 | --- | --- | --- | --- |
-| [`classify_files`](https://www.google.com/search?q=./classify_files) | Text Category Classifier | NLP | CountVectorizer, Multinomial Naive Bayes |
-| [`classify_handwritten_digits`](https://www.google.com/search?q=./classify_handwritten_digits) | Handwritten Digit Classifier | Computer Vision | TensorFlow/Keras, Dense Neural Networks, MNIST |
-| [`ocr_handwritten_digits`](https://www.google.com/search?q=./ocr_handwritten_digits) | OCR with kNN | Computer Vision | OpenCV, k-Nearest Neighbors, Image Slicing |
-| [`scikit_handwritten`](https://www.google.com/search?q=./scikit_handwritten) | Digit Recognition with MLP | Computer Vision | Scikit-learn, MLPClassifier, SGD |
-| [`sms_detection`](https://www.google.com/search?q=./sms_detection) | SMS Spam Detector | NLP | Embeddings, BiLSTM, Transfer Learning (USE) |
-| [`spam_detection`](https://www.google.com/search?q=./spam_detection) | Email Spam Detector | NLP | Tokenizer, LSTM, EarlyStopping, WordCloud |
-| [`supportbot`](https://www.google.com/search?q=./supportbot) | Support Ticket Classifier | NLP | Regex, Naive Bayes, Stacked BiLSTM, Multiclass |
-| [`truthguard_by_text`](https://www.google.com/search?q=./truthguard_by_text) | Fake News Detector | NLP | Embeddings, BiLSTM, Universal Sentence Encoder |
-| [`pytorch_handwritten_digits`](https://www.google.com/search?q=./pytorch_handwritten_digits) | Digit Classifier in PyTorch | Computer Vision | PyTorch, nn.Module, DataLoader, SGD |
-| [`neural_network_handwritten_digits`](https://www.google.com/search?q=./neural_network_handwritten_digits) | Digit Classifier from CSV | Computer Vision | TensorFlow/Keras, one-hot encoding, CSV pipeline |
-| [`sign_language`](https://www.google.com/search?q=./sign_language) | ASL Sign Language Classifier | Computer Vision | TensorFlow + PyTorch, image\_dataset\_from\_directory, ImageFolder |
-| [`disease_prediction`](https://www.google.com/search?q=./disease_prediction) | Disease Prediction from Symptoms | Healthcare ML | SVM, GaussianNB, Random Forest, Voting Ensemble, StratifiedKFold, RandomOverSampler |
-| [`heart_disease_lg`](https://www.google.com/search?q=./heart_disease_lg) | 10-Year CHD Risk Prediction | Healthcare ML | Logistic Regression, SMOTE, StandardScaler, Confusion Matrix |
-| [`heart_disease_predictor`](https://www.google.com/search?q=./heart_disease_predictor) | Heart Disease Predictor | Healthcare ML | Voting Ensemble (SVM, Naive Bayes, Random Forest), SMOTE, StratifiedKFold |
-| [`wine_prediction`](https://www.google.com/search?q=./wine_prediction) | Wine Type Classification | Classical ML | Keras DNN, Binary Classification, EDA, Pandas merging |
+| [`classify_files`](./classify_files) | Text Category Classifier | NLP | CountVectorizer, Multinomial Naive Bayes |
+| [`classify_handwritten_digits`](./classify_handwritten_digits) | Handwritten Digit Classifier | Computer Vision | TensorFlow/Keras, Dense Neural Networks, MNIST |
+| [`ocr_handwritten_digits`](./ocr_handwritten_digits) | OCR with kNN | Computer Vision | OpenCV, k-Nearest Neighbors, Image Slicing |
+| [`scikit_handwritten`](./scikit_handwritten) | Digit Recognition with MLP | Computer Vision | Scikit-learn, MLPClassifier, SGD |
+| [`sms_detection`](./sms_detection) | SMS Spam Detector | NLP | Embeddings, BiLSTM, Transfer Learning (USE) |
+| [`spam_detection`](./spam_detection) | Email Spam Detector | NLP | Tokenizer, LSTM, EarlyStopping, WordCloud |
+| [`supportbot`](./supportbot) | Support Ticket Classifier | NLP | Regex, Naive Bayes, Stacked BiLSTM, Multiclass |
+| [`truthguard_by_text`](./truthguard_by_text) | Fake News Detector | NLP | Embeddings, BiLSTM, Universal Sentence Encoder |
+| [`pytorch_handwritten_digits`](./pytorch_handwritten_digits) | Digit Classifier in PyTorch | Computer Vision | PyTorch, nn.Module, DataLoader, SGD |
+| [`neural_network_handwritten_digits`](./neural_network_handwritten_digits) | Digit Classifier from CSV | Computer Vision | TensorFlow/Keras, one-hot encoding, CSV pipeline |
+| [`sign_language`](./sign_language) | ASL Sign Language Classifier | Computer Vision | TensorFlow + PyTorch, image\_dataset\_from\_directory, ImageFolder |
+| [`disease_prediction`](./disease_prediction) | Disease Prediction from Symptoms | Healthcare ML | SVM, GaussianNB, Random Forest, Voting Ensemble, StratifiedKFold, RandomOverSampler |
+| [`heart_disease_lg`](./heart_disease_lg) | 10-Year CHD Risk Prediction | Healthcare ML | Logistic Regression, SMOTE, StandardScaler, Confusion Matrix |
+| [`heart_disease_predictor`](./heart_disease_predictor) | Heart Disease Predictor | Healthcare ML | Voting Ensemble (SVM, Naive Bayes, Random Forest), SMOTE, StratifiedKFold |
+| [`wine_prediction`](./wine_prediction) | Wine Type Classification | Classical ML | Keras DNN, Binary Classification, EDA, Pandas merging |
 
 ---
 
@@ -58,7 +58,7 @@ Keras DNN             Binary Classification                          Feature Sca
 1. **Clone the repository**
 
 ```
-git clone https://github.com/<your-username>/machine_learning_portfolio.git
+git clone https://github.com/bernardo-tardin/machine_learning_portfolio.git
 cd machine_learning_portfolio
 
 ```
